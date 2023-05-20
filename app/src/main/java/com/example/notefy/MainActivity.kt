@@ -5,11 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.notefy.model.Note
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notefy.screens.NoteScreen
+import com.example.notefy.screens.NoteViewModel
 import com.example.notefy.ui.theme.NoteFyTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,20 +16,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                val notes = remember {
-                    mutableStateListOf<Note>()
-                }
-                NoteScreen(
-                    notes = notes,
-                    onRemoveNote = {
-                        notes.remove(it)
-                    },
-                    onAddNote = {
-                        notes.add(it)
-                    })
+                NoteApp()
             }
         }
     }
+}
+
+@Composable
+fun NoteApp(noteViewModel: NoteViewModel = viewModel()) {
+    val notesList = noteViewModel.getAllNotes()
+    NoteScreen(
+        notes = notesList,
+        onRemoveNote = {
+            noteViewModel.removeNote(it)
+        },
+        onAddNote = {
+            noteViewModel.addNote(it)
+        })
 }
 
 @Composable

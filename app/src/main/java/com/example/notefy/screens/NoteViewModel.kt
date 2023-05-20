@@ -16,8 +16,8 @@ class NoteViewModel : ViewModel() {
         noteList.add(note)
     }
 
-    fun removeNote(not: Note) {
-        noteList.remove(not)
+    fun removeNote(note: Note) {
+        noteList.remove(note)
     }
 
     fun getAllNotes(): List<Note> {
