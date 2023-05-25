@@ -10,7 +10,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notefy.screens.NoteScreen
 import com.example.notefy.screens.NoteViewModel
 import com.example.notefy.ui.theme.NoteFyTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
