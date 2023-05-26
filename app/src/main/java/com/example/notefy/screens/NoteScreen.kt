@@ -36,7 +36,7 @@ import com.example.notefy.components.NoteButton
 import com.example.notefy.components.NoteInputText
 import com.example.notefy.data.NotesDataSource
 import com.example.notefy.model.Note
-import java.time.format.DateTimeFormatter
+import com.example.notefy.util.formatDate
 
 
 @Composable
@@ -57,7 +57,7 @@ fun NoteRow(modifier: Modifier = Modifier, note: Note, onNoteClicked: (Note) -> 
             Text(text = note.title, style = MaterialTheme.typography.titleMedium)
             Text(text = note.description, style = MaterialTheme.typography.bodyMedium)
             Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
+                text = formatDate(note.entryDate.time),
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -123,7 +123,7 @@ fun NoteScreen(notes: List<Note>, onAddNote: (Note) -> Unit, onRemoveNote: (Note
             })
         }
         Divider(modifier = Modifier.padding(10.dp))
-        LazyColumn() {
+        LazyColumn {
             items(notes) { note ->
                 NoteRow(note = note, onNoteClicked = {
                     onRemoveNote(it)
