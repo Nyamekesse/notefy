@@ -7,7 +7,9 @@ import java.time.Instant
 import java.util.Date
 import java.util.UUID
 
+
 @Entity(tableName = "notes_tbl")
+
 data class Note(
     @PrimaryKey
     val id: UUID = UUID.randomUUID(),
