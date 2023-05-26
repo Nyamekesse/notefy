@@ -1,4 +1,4 @@
-package com.example.notefy
+package com.example.notefy.util
 
 import androidx.room.TypeConverter
 import java.util.Date
